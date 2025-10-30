@@ -1,137 +1,124 @@
 [
   {
-    "keywords": [
-      {"word": "ROS", "weight": 1.0},
-      {"word": "机器人操作系统", "weight": 1.0},
-      {"word": "Robot Operating System", "weight": 0.8}
+    "keywords":[
+      {"word":"ROS是什么", "weight":2.8},
+      {"word":"ROS2是什么", "weight":2.8},
+      {"word":"ROS2是什么系统","weight":2.0}
     ],
-    "answer": "ROS是机器人操作系统(ROS, Robot Operating System)，提供通信、工具和库以简化机器人开发。"
+    "answer":"机器人操作系统 (ROS) 是一组用于构建机器人应用程序的软件库和工具集。从驱动程序到最先进的算法，借助强大的开发工具，ROS可以满足您下一个机器人项目的需求。并且它全部开源。"
   },
   {
     "keywords": [
-      {"word": "ROS2", "weight": 1.0},
-      {"word": "ROS1", "weight": 0.8},
-      {"word": "区别", "weight": 0.9},
-      {"word": "差异", "weight": 0.9}
+      {"word": "在Ubuntu上构建", "weight": 2.8},
+      {"word": "在ubuntu上构建", "weight": 2.0},
+      {"word": "在Linux上构建", "weight": 2.8},
+      {"word": "在linux上构建", "weight": 2.0},
+      {"word": "构建ROS2", "weight": 1.0}
     ],
-    "answer": "ROS2基于ROS，支持多平台实时性与安全性，节点、话题、服务等概念延续但实现更现代。"
+    "answer": "在Ubuntu或Linux上构建ROS2：\n1.确保你有一个支持 UTF-8 的语言区域\n2.您需要将ROS 2 apt仓库添加到您的系统中。为此，首先使用apt指令授权我们的GPG密钥，然后将仓库添加到源文件列表中\n3.安装开发工具和ROS工具\n4.创建工作空间并克隆所有仓库\n5.使用rosdep安装依赖项(注意: 如果你使用的是一个基于Ubuntu的发行版 (比如Linux Mint)，但没有标识自己的版本，你会收到一条错误信息，比如 Unsupported OS [mint] 。在这种情况下，将 “-- os = ubuntu: focal” 附加到上述命令中。)\n6.安装额外的DDS实现 (可选)\n7.如果您已经以另一种方式安装了ROS 2 (通过Debians或二进制发行版)，确保在没有其他安装源文件的新环境中运行以下命令。另外，请确保您的 .bashrc 中没有 “source /opt/ros/$ {ros_diso}/setup.Bash”。您可以使用命令 “printenv | grep -i ROS” 确定ROS 2还没有进行环境配置。输出应为空。\n8.通过source以下文件来设置您的环境。\n9.尝试运行一些例子,在一个终端中，source安装文件，然后运行一个c++ talker,在另一个终端中，source安装文件，然后运行一个Python listener,你应该看到了 talker 说这是 Publishing 消息 ，listener 说 I heard 这些消息。这证明了C++和Python的APIs都是正常工作的。万岁!\n10.使用ROS 1 bridge,ROS 1bridge可以连接从ROS 1到ROS 2的话题，反之亦然。看看这个专门的文献 documentation 如何编译和使用ROS 1bridge。\n11.使用除gcc之外的其他编译器编译ROS 2也很容易。如果您将环境变量 CC 和 CXX 分别设置为可用的C和C + + 编译器去生成可执行文件，并依次重新触发CMake配置 (通过使用 --force-cmake-config 或删除您想要重新编译的包)，CMake将使用不同的编译器重新配置。\n12.如果你按照上面的指示用colcon安装了你的工作空间， “uninstalling”可能只是打开一个新的终端，而没有source工作空间的 setup 文件。因此，您的环境就会表现得好像您的系统上没有安装Foxy。如果您还打算释放所有空间，则可以使用以下命令删除整个工作空间的目录: rm -rf ~/ros2_foxy"
   },
   {
     "keywords": [
-      {"word": "话题", "weight": 1.0},
-      {"word": "topic", "weight": 1.0},
-      {"word": "列表", "weight": 0.7},
-      {"word": "查看", "weight": 0.6}
+      {"word": "在Ubuntu上安装", "weight": 2.8},
+      {"word": "在ubuntu上安装", "weight": 2.0},
+      {"word": "在Linux上安装", "weight": 2.8},
+      {"word": "在linux上安装", "weight": 2.0},
+      {"word": "安装ROS2", "weight": 1.0}
     ],
-    "answer": "使用命令：ros2 topic list"
+    "answer": "在Ubuntu或Linux上构建ROS2：\n1.系统要求：我们支持Ubuntu Linux Focal Fossa (20.04) 64位 x86和64位ARM。\n2.您需要将ROS 2 apt仓库添加到您的系统中。为此，首先使用apt指令授权我们的GPG密钥，然后将仓库添加到源文件列表中\n3.下载Ubuntu的最新包; 让我们假设它保存在 “~/Downloads/ros2-package-linux-x86_64.tar.bz2”目录中; 解压。\n4.安装和初始化rosdep\n5.根据您下载的版本设置您的rosdistribution(注意: 如果你使用的是一个基于Ubuntu的发行版 (比如Linux Mint)，但没有标识自己的版本，你会收到一条错误信息，比如 Unsupported OS [mint] 。在这种情况下，将 “-- os = ubuntu: focal” 附加到上述命令中。)\n6.安装python 3库\n7.安装额外的DDS实现 (可选)\n8.通过source以下文件来设置您的环境:. ~/ros2_foxy/ros2-linux/setup.bash\n9.尝试运行一些例子,在一个终端中，source安装文件，然后运行一个c++ talker,在另一个终端中，source安装文件，然后运行一个Python listener,你应该看到了 talker 说这是 Publishing 消息 ，listener 说 I heard 这些消息。这证明了C++和Python的APIs都是正常工作的。万岁!\n10.使用ROS 1 bridge,ROS 1bridge可以连接从ROS 1到ROS 2的话题，反之亦然。看看这个专门的文献 documentation 如何编译和使用ROS 1bridge。\n11.使用除gcc之外的其他编译器编译ROS 2也很容易。如果您将环境变量 CC 和 CXX 分别设置为可用的C和C + + 编译器去生成可执行文件，并依次重新触发CMake配置 (通过使用 --force-cmake-config 或删除您想要重新编译的包)，CMake将使用不同的编译器重新配置。\n12.如果你按照上面的指示用colcon安装了你的工作空间， “uninstalling”可能只是打开一个新的终端，而没有source工作空间的 setup 文件。因此，您的环境就会表现得好像您的系统上没有安装Foxy。如果您还打算释放所有空间，则可以使用以下命令删除整个工作空间的目录: rm -rf ~/ros2_foxy"
   },
   {
     "keywords": [
-      {"word": "RViz", "weight": 1.0},
-      {"word": "可视化", "weight": 0.9},
-      {"word": "启动", "weight": 0.6}
-    ],
-    "answer": "运行命令：ros2 run rviz2 rviz2，然后添加Marker显示订阅/qa_visualization话题。"
-  },
-  {
-    "keywords": [
-      {"word": "RViz", "weight": 1.0},
-      {"word": "rviz", "weight": 1.0},
-      {"word": "什么", "weight": 0.8},
-      {"word": "工具", "weight": 0.8}
-    ],
-    "answer": "RViz 是 ROS（机器人操作系统）中的一个强大的 3D 可视化工具，用于实时显示机器人模型、传感器数据、地图信息以及其他状态信息。它是开发和调试机器人应用的重要工具，能够帮助用户直观地了解机器人运行状态和环境信息。"
-  },
-  {
-    "keywords": [
-      {"word": "系统", "weight": 1.0},
-      {"word": "基于", "weight": 1.0},
-      {"word": "开发", "weight":0.1},
-      {"word": "干什么", "weight": 0.8},
-      {"word": "什么用", "weight": 0.8}
+      {"word": "本系统是什么", "weight": 2.8},
+      {"word": "这个系统干什么", "weight": 2.5},
+      {"word": "系统有什么用", "weight": 2.3},
+      {"word": "基于什么开发", "weight": 2.0},
+      {"word": "ROS2-Rolling", "weight": 1.5},
+      {"word": "问答系统", "weight": 1.5},
+      {"word": "Github项目", "weight": 1.2}
     ],
     "answer": "本系统基于ROS2-Rolling开发，使用Python写内部节点，用Web与用户交互，提供简单的问答问题，本系统已上传Github"
   },
   {
     "keywords": [
-      {"word": "怎么", "weight":0.9},
-      {"word": "如何", "weight":0.9},
-      {"word": "工作", "weight":0.8},
-      {"word": "运行", "weight":0.8},
-      {"word": "实现", "weight":0.8},
-      {"word": "运作", "weight":0.8}
+      {"word": "系统怎么工作", "weight": 2.8},
+      {"word": "系统如何运行", "weight": 2.8},
+      {"word": "工作原理", "weight": 2.5},
+      {"word": "实现方式", "weight": 2.3},
+      {"word": "架构设计", "weight": 2.0},
+      {"word": "节点通信", "weight": 1.8},
+      {"word": "WebSocket通信", "weight": 1.5},
+      {"word": "rosbridge", "weight": 1.3}
     ],
     "answer": "由Web输入问题，通过WebSocket和rosbridge传给web_input_node节点，节点将问题传给qa_core_node节点，再传给knowledge_base_server节点在JSON知识库中匹配问题并返回答案，将答案传给output_manager_node节点，最后由web_output_node节点通过WebSocket传回Web显示。传输的方式都是发布/订阅话题的形式。本系统还有qa_logger输出日志功能，方便随时检查。"
   },
   {
     "keywords": [
-      {"word": "威风龙", "weight": 1.0}
+      {"word": "威风龙", "weight": 3.0}
     ],
     "answer": "到！！！！！！"
   },
   {
     "keywords": [
-      {"word": "为什么", "weight": 1.0},
-      {"word": "全栈高手", "weight": 0.9},
-      {"word": "组", "weight": 1.0},
-      {"word": "名字", "weight": 0.9}
+      {"word": "全栈高手组", "weight": 2.8},
+      {"word": "为什么叫全栈高手", "weight": 2.5},
+      {"word": "组名由来", "weight": 2.3},
+      {"word": "团队名字", "weight": 2.0},
+      {"word": "全栈开发", "weight": 1.5}
     ],
     "answer": "因为组内的每个成员都能做到一人全栈开发，所以取名全栈高手组。(开玩笑的)"
   },
   {
     "keywords": [
-      {"word": "作者", "weight": 1.0},
-      {"word": "制作", "weight": 1.0},
-      {"word": "怎样", "weight": 0.8},
-      {"word": "什么样", "weight":0.8}
+      {"word": "作者是什么样", "weight": 2.8},
+      {"word": "作者怎样", "weight": 2.5},
+      {"word": "制作者特点", "weight": 2.2},
+      {"word": "开发者性格", "weight": 2.0}
     ],
     "answer": "作者是个人...emmmmm...作者是人吧"
   },
   {
     "keywords": [
-      {"word": "作者", "weight": 1.0},
-      {"word": "男", "weight": 0.9},
-      {"word": "女", "weight": 0.9},
-      {"word": "性别", "weight": 0.9}
+      {"word": "作者性别", "weight": 2.8},
+      {"word": "作者是男是女", "weight": 2.5},
+      {"word": "开发者男女", "weight": 2.3}
     ],
     "answer": "作者是个谜,guess"
   },
   {
     "keywords": [
-      {"word": "cxb", "weight": 1.0},
-      {"word": "clf", "weight": 1.0},
-      {"word": "xsj", "weight": 1.0},
-      {"word": "yhr", "weight": 1.0},
-      {"word": "zhh", "weight": 1.0},
-      {"word": "tyz", "weight": 1.0},
-      {"word": "陈小宝", "weight": 1.0},
-      {"word": "崔鲡沣", "weight": 1.0},
-      {"word": "谢圣杰", "weight": 1.0},
-      {"word": "余豪韧", "weight": 1.0},
-      {"word": "朱海华", "weight": 1.0},
-      {"word": "田宇喆", "weight": 1.0},
-      {"word":"是", "weight": 0.9},
-      {"word":"谁", "weight": 0.8},
-      {"word":"什么", "weight": 0.8},
-      {"word":"人", "weight": 0.8},
-      {"word":"组员", "weight": 0.8}
+      {"word": "cxb是谁", "weight": 2.8},
+      {"word": "clf是谁", "weight": 2.8},
+      {"word": "xsj是谁", "weight": 2.8},
+      {"word": "yhr是谁", "weight": 2.8},
+      {"word": "zhh是谁", "weight": 2.8},
+      {"word": "tyz是谁", "weight": 2.8},
+      {"word": "陈小宝", "weight": 2.5},
+      {"word": "崔鲡沣", "weight": 2.5},
+      {"word": "谢圣杰", "weight": 2.5},
+      {"word": "余豪韧", "weight": 2.5},
+      {"word": "朱海华", "weight": 2.5},
+      {"word": "田宇喆", "weight": 2.5},
+      {"word": "组员信息", "weight": 2.0},
+      {"word": "成员名单", "weight": 2.0}
     ],
     "answer": "你好像问了什么不该问的，那是禁忌，不可说"
   },
   {
     "keywords": [
-      {"word": "老师", "weight": 1.0},
-      {"word": "教师", "weight": 1.0},
-      {"word": "女", "weight": 1.0},
-      {"word": "最", "weight": 1.0},
-      {"word": "尊重", "weight": 0.6},
-      {"word": "喜欢", "weight": 0.9}
+      {"word": "最喜欢的老师", "weight": 2.8},
+      {"word": "最尊重的老师", "weight": 2.5},
+      {"word": "陈莺老师", "weight": 2.3},
+      {"word": "指导教师", "weight": 2.0}
     ],
     "answer": "那当然是我们集美貌和才华于一身的陈莺老师啦(≧∇≦)ﾉ🎉🎉🎉"
   },
   {
     "keywords": [
-      {"word": "你好", "weight": 1.0}
+      {"word": "你好", "weight": 3.0},
+      {"word": "您好", "weight": 3.0},
+      {"word": "hi", "weight": 2.5},
+      {"word": "hello", "weight": 2.5}
     ],
     "answer": "你好"
   }

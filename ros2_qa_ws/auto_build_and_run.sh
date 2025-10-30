@@ -16,14 +16,6 @@ pkill -f "knowledge_base_server" >/dev/null 2>&1 || true
 pkill -f "qa_assistant_launch.py" >/dev/null 2>&1 || true
 pkill -f "ros2 launch.*ros2_qa_assistant" >/dev/null 2>&1 || true
 
-if [ ! -f "/opt/ros/rolling/setup.bash" ]; then
-  echo "[错误] 未找到ROS 2 Rolling，请安装ROS 2 Rolling" >&2
-  exit 1
-fi
-
-echo "[信息] 加载ROS Rolling环境"
-source /opt/ros/rolling/setup.bash
-
 # 使用临时目录存放ROS日志
 export ROS_LOG_DIR="/tmp/ros_logs"
 mkdir -p "$ROS_LOG_DIR"
@@ -131,8 +123,5 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM
 
-echo "[信息] 启动QA助手"
-WEB_FILE="file://$WS_DIR/src/$PKG_NAME/web/index.html"
-echo "[信息] 请在浏览器中打开网页: $WEB_FILE"
 
 ros2 launch "$PKG_NAME" qa_assistant_launch.py

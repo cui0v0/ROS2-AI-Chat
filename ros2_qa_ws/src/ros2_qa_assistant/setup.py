@@ -14,12 +14,6 @@ setup(
             'config/knowledge_base.json',
             'config/rosbridge_qos.yaml'
         ]),
-        ('share/' + package_name + '/web', [
-            'web/index.html',
-            'web/roslib.min.js',
-            'web/ros2_qa.js',
-            'web/style.css',
-        ]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

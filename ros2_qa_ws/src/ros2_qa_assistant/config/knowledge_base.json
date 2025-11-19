@@ -29,6 +29,97 @@
   },
   {
     "keywords": [
+      {"word": "配置ROS环境", "weight": 2.8},
+      {"word": "准备ROS环境", "weight": 2.5}
+    ],
+    "answer": "首先，将启动脚本添加到您的shell配置文件中：source /opt/ros/您安装的ROS的名字/setup.bash\n检查环境变量：printenv | grep -i ROS，如果您看到ROS 2相关的环境变量，则表示您的环境已正确配置。"
+  },
+  {
+    "keywords": [
+      {"word": "构建ROS功能包", "weight": 2.8},
+      {"word": "构建ROS2功能包", "weight": 2.8},
+      {"word": "ROS包搭建", "weight": 2.5},
+      {"word": "ROS2包搭建", "weight": 2.5}
+    ],
+    "answer": "ROS1使用catkin_make或catkin build构建包，编译后会生成devel和build文件夹\nROS2使用colcon build构建包，编译后会生成install、build和log文件夹\nROS1必须运行roscore才能运行节点，ROS2不需要\n两者都依靠rosdep来安装系统依赖"
+  },
+  {
+    "keywords": [
+      {"word": "ROS2节点", "weight": 2.8},
+      {"word": "节点是什么", "weight": 2.5}
+    ],
+    "answer": "ROS中的每个节点应负责单个模块目的，每个节点可以通过话题、服务、动作或参数向其他节点发送和接收数据，在ROS2中，单个可执行文件(Cpp或Python)可以包含多个节点。\nROS2启动节点：ros2 run <package_name> <executable_name>\n查看节点列表：ros2 node list\n查看节点信息：ros2 node info <node_name>"
+  },
+  {
+    "keywords": [
+      {"word": "ROS2话题", "weight": 2.8},
+      {"word": "话题是什么", "weight": 2.5}
+    ],
+    "answer": "ROS2将复杂的系统分解成许多模块化节点，话题是ROS中至关重要的元素，它充当节点交换消息的总线，节点可以将数据发布到任意数量的话题，同时订阅任意数量的话题\n使用 rqt_graph 可视化变化的节点和话题，以及它们之间的联系\n运行 ros2 topic list 命令将返回系统中当前活动的所有话题的列表\n查看正在发布的关于某个话题的数据:ros2 topic echo <topic_name>\n话题不一定只是点对点通讯; 它可以是一对多、多对一或多对多\n发布消息:ros2 topic pub <topic_name> <msg_type> '<data>'\n查看话题信息:ros2 topic info <topic_name>\n查看话题类型:ros2 topic type <topic_name>\n查看话题的消息定义:ros2 interface show <msg_type>"
+  },
+  {
+    "keywords": [
+      {"word": "ROS2服务", "weight": 2.8},
+      {"word": "服务是什么", "weight": 2.5}
+    ],
+    "answer": "服务是ROS中节点的另一种通讯方法。服务基于调用和响应模型，而不是话题的发布者-订阅者模型。而话题允许节点订阅数据流得到不断更新，服务对具体调用的客户端提供数据\n运行 ros2 service list 命令将返回系统中当前活动的所有服务的列表，你将会看到两个节点都有相同的六个服务，它们的名字中有 parameters 。几乎ROS 2中的每个节点都有这些构建参数的基础设施服务。在下一个教程中将会有更多关于参数的信息。在本教程中，将在讨论中省略参数服务。\n查看服务信息:ros2 service info <service_name>\n调用服务:ros2 service call <service_name> '<request_data>'\n查看服务类型:ros2 service type <service_name>\n查看服务的请求和响应定义:ros2 interface show <srv_type>"
+  },
+  {
+    "keywords": [
+      {"word": "ROS2参数", "weight": 2.8},
+      {"word": "参数是什么", "weight": 2.5}
+    ],
+    "answer": "参数是节点的配置。您可以将参数视为节点设置。节点可以将参数存储为整数、浮点数、布尔、字符串和列表。在ROS 2中，每个节点维护自己的参数\n查看节点的参数:ros2 param list <node_name>\n获取参数的值:ros2 param get <node_name> <param_name>\n设置参数的值:ros2 param set <node_name> <param_name> <value>\n删除参数:ros2 param delete <node_name> <param_name>"
+  },
+  {
+    "keywords": [
+      {"word": "ROS2动作", "weight": 2.8},
+      {"word": "动作是什么", "weight": 2.5}
+    ],
+    "answer": "Action是ROS 2中的通讯类型之一，用于长期运行的任务。它们由三部分组成: 目标、反馈和结果，Action是建立在话题和服务之上的。它们的功能与服务类似，除了动作是可抢占的 (您可以在执行时取消它们)。他们也提供稳定的反馈，而不是返回单一响应的服务，Action使用客户端-服务器模型，类似于出版商-订户模型，“动作客户端” 节点向 “动作服务器” 节点发送目标，该节点确认目标并返回反馈流和结果。\n查看动作服务器:ros2 action list\n查看动作信息:ros2 action info <action_name>\n发送动作目标:ros2 action send_goal <action_name> '<goal_data>'\n取消动作目标:ros2 action cancel_goal <action_name> <goal_id>\n查看动作类型:ros2 action type <action_name>\n查看动作的目标、反馈和结果定义:ros2 interface show <action_type>"
+  },
+  {
+    "keywords": [
+      {"word": "如何使用rqt", "weight": 2.8},
+      {"word": "rqt_是什么", "weight": 2.5},
+      {"word": "rqt控制台怎么使用", "weight": 2.3}
+    ],
+    "answer": "rqt_console,你可以随着时间的推移收集这些信息，以一种更有条理的方式仔细查看它们，过滤它们，保存它们，甚至在不同的时间重新加载保存的文件进行反思。节点使用日志以多种方式输出有关事件和状态的消息。为了用户，他们的内容通常是信息性的。\nrqt_graph,rqt_graph 提供了一个可视化界面，用于显示ROS系统中节点和话题之间的关系。它显示了节点如何通过话题进行通信，以及它们之间的连接方式。\nrqt_topic,rqt_topic 提供了一个图形用户界面，用于监视和分析ROS话题的数据流。它允许用户查看话题的实时数据，并以图形方式显示这些数据，便于理解和分析。\nrqt_service_caller,rqt_service_caller 提供了一个图形用户界面，用于调用ROS服务。它允许用户选择要调用的服务，输入请求参数，并查看服务的响应结果，简化了与ROS服务的交互过程。"
+  },
+  {
+    "keywords": [
+      {"word": "ROS2 launch是什么", "weight": 2.8},
+      {"word": "launch是什么", "weight": 2.5},
+      {"word": "launch文件怎么用", "weight": 2.3}
+    ],
+    "answer": "launch是ROS 2中用于启动多个节点和配置参数的工具。它使用Python编写的launch文件来定义要启动的节点、它们的参数以及它们之间的关系。launch文件可以通过命令行或ros2 launch命令来运行。\nlaunch文件的基本结构包括:\n- 导入所需的库\n- 定义节点及其参数\n- 定义节点之间的关系\n使用launch文件的好处包括:\n- 简化节点的启动过程\n- 方便地管理节点之间的依赖关系\n- 轻松地配置和调整节点参数"
+  },
+  {
+    "keywords": [
+      {"word": "记录和回放数据", "weight": 2.8},
+      {"word": "如何使用记录", "weight": 2.5},
+      {"word": "如何使用回放", "weight": 2.5},
+      {"word": "怎么使用记录", "weight": 2.3},
+      {"word": "怎么使用回放", "weight": 2.3}
+    ],
+    "answer": "在ROS 2中，您可以使用rosbag2工具来记录和回放数据。\n记录数据:\n使用以下命令开始记录话题数据:\nros2 bag record -o <bag_name> <topic_name>\n这将创建一个名为<bag_name>的文件夹，并将指定话题的所有消息记录到该文件夹中。\n回放数据:\n使用以下命令回放记录的数据:\nros2 bag play <bag_name>\n这将重新发布记录的消息，您可以在其他节点中订阅这些消息。"
+  },
+  {
+    "keywords": [
+      {"word": "创建工作空间", "weight": 2.8},
+      {"word": "工作空间是什么", "weight": 2.5}
+    ],
+    "answer": "工作区是包含ROS 2包的目录。在使用ROS 2之前，有必要在您计划使用的终端中源文件ROS 2安装工作区。这使得ROS 2的包可供您在该终端中使用。您还可以选择采购一个 “覆盖” -- 一个辅助工作区，您可以在其中添加新包，而不会干扰您正在扩展的现有ROS 2工作区或 “参考”。您的衬底必须包含叠加层中所有包的依赖项。覆盖中的包将覆盖衬底中的包。也有可能有几层衬垫和覆盖层，每个连续的覆盖层使用其父衬垫包。\n创建工作空间的步骤:\n1.创建一个目录作为工作空间的根目录，例如: mkdir -p ~/ros2_ws/src\n2.导航到工作空间的根目录: cd ~/ros2_ws\n3.使用colcon工具构建工作空间: colcon build\n4.构建完成后，源文件工作空间的安装文件以便在终端中使用: source install/setup.bash\n5.现在，您可以在工作空间的src目录中添加ROS 2包，并使用colcon build重新构建工作空间以包含新包。"
+  },
+  {
+    "keywords": [
+      {"word": "什么是tf2", "weight": 2.8},
+      {"word": "tf2的作用", "weight": 2.5}
+    ],
+    "answer": "tf2是ROS 2中的一个坐标变换库，用于处理不同坐标系之间的转换。它提供了一种简单的方法来管理和查询坐标变换，使得机器人在执行任务时能够正确地理解和使用不同的坐标系。tf2的主要功能包括:\n- 维护坐标系之间的变换关系\n- 提供变换查询接口\n- 支持时间戳和插值\n- 与ROS 2的其他组件无缝集成\n使用tf2，您可以轻松地在机器人系统中处理坐标变换，从而实现更复杂的任务和功能。"
+  },
+  {
+    "keywords": [
       {"word": "本系统是什么", "weight": 2.8},
       {"word": "这个系统干什么", "weight": 2.5},
       {"word": "系统有什么用", "weight": 2.3},
@@ -102,7 +193,7 @@
       {"word": "组员信息", "weight": 2.0},
       {"word": "成员名单", "weight": 2.0}
     ],
-    "answer": "你好像问了什么不该问的，那是禁忌，不可说"
+    "answer": "神秘的开发团队成员，一群有意思的人"
   },
   {
     "keywords": [
@@ -121,5 +212,12 @@
       {"word": "hello", "weight": 2.5}
     ],
     "answer": "你好"
+  },
+  {
+    "keywords": [
+      {"word": "目前这个系统完成度怎么样", "weight": 2.8},
+      {"word": "系统进展如何", "weight": 2.5}
+    ],
+    "answer": "目前这个系统的demo已经完成，基本功能已经实现，但仍有一些细节需要优化和完善。\n1.知识库现在依然是静态JSON文件，并且采用关键字匹配的方式，后续计划使用更先进的自然语言处理技术来提升问答的准确性和智能化水平。\n2.目前系统输出语句依旧是固定格式，后续加入自然语言模型生成更自然的回答。\n3.系统的部署一直是一个问题，目前只能本地运行，而代码都以上传Github，后续计划使用Docker云端部署。\n4.目前使用的语音转文字和文字转语音都是简单调用浏览器自带的API，后续使用更专业的API来提升体验和准确度。"
   }
 ]
